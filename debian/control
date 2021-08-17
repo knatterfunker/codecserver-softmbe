@@ -1,0 +1,14 @@
+Source: codecserver-driver-softmbe
+Maintainer: The Knatterfunkers <knatterfunker@protonmail.com>
+Section: hamradio
+Priority: optional
+Standards-Version: 4.2.0
+Build-Depends: debhelper (>= 11), cmake (>= 3), libprotobuf-dev (>= 3), protobuf-compiler (>= 3), libmbe-dev (>=1.3.0), libcodecserver-dev (>= 0.1.0)
+Vcs-Git: https://github.com/knatterfunker/codecserver_softmbe.git
+
+Package: codecserver-driver-softmbe
+Architecture: any
+Depends: libcodecserver (>=0.1.0), ${shlibs:Depends}, ${misc:Depends}
+Description: Codecserver driver for libmbe (software decoder)
+ Adds support to acodecserver for software decoding of DMR, YSF, NXDN and
+ D-STAR digital voice.
