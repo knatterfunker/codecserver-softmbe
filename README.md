@@ -50,6 +50,9 @@ Finally, add the following lines at the end of `/etc/codecserver/codecserver.con
 ```
 [device:softmbe]
 driver=softmbe
+uvquality=3
 ```
+
+`uvquality` determines how much effort is put into the decoding. A higher number yields better audio quality at the cost of more CPU load. Must be between 1 and 64; the default is 3.
 
 Digital voice decode should now be available in openwebrx after restarting the `openwebrx` and `codecserver` services.
