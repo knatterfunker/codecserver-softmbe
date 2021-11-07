@@ -10,7 +10,7 @@ std::string Driver::getIdentifier()
 
 Device* Driver::buildFromConfiguration(std::map<std::string, std::string> config)
 {
-    return new Device();
+    return new Device(3);
 }
 
 static int registration = CodecServer::Registry::registerDriver(new Driver());

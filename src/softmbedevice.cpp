@@ -4,13 +4,15 @@
 
 namespace softmbe {
 
+Device::Device(int q) : uvquality(q) {}
+
 std::vector<std::string> Device::getCodecs()
 {
     return { "ambe" };
 }
 
 CodecServer::Session* Device::startSession(CodecServer::proto::Request* request) {
-    softmbeSession* session = new softmbeSession(3);
+    softmbeSession* session = new softmbeSession(uvquality);
     try
     {
         session->renegotiate(request->settings());
