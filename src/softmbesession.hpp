@@ -23,7 +23,7 @@ namespace softmbe
     class softmbeSession: public CodecServer::Session
     {
         public:
-            softmbeSession();
+            softmbeSession(int q);
             void encode(char* input, size_t size) override;
             void decode(char* input, size_t size) override;
             size_t read(char* output) override;
@@ -39,6 +39,7 @@ namespace softmbe
             mbe_parms cur_mp;
             mbe_parms prev_mp;
             mbe_parms prev_mp_enhanced;
+            int uvquality; // for mbe_synthesizeSpeechf, default is 3
 
             void decode_ambe_3600x2450(char* input, size_t size);
             void decode_ambe_3600x2400(char* input, size_t size);

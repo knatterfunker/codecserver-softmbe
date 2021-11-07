@@ -10,7 +10,7 @@ std::vector<std::string> Device::getCodecs()
 }
 
 CodecServer::Session* Device::startSession(CodecServer::proto::Request* request) {
-    softmbeSession* session = new softmbeSession();
+    softmbeSession* session = new softmbeSession(3);
     try
     {
         session->renegotiate(request->settings());

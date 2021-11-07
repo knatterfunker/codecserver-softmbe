@@ -7,8 +7,9 @@
 
 using namespace softmbe;
 
-softmbeSession::softmbeSession()
+softmbeSession::softmbeSession(int q)
 {
+    uvquality = q;
     audio_queue = new BlockingQueue<short>(1000);
     mbe_initMbeParms(&cur_mp, &prev_mp, &prev_mp_enhanced);
 }
@@ -69,7 +70,7 @@ void softmbeSession::decode_ambe_3600x2450(char* input, size_t size)
 
     short* audio_out_buf = (short*)std::malloc(AUDIO_BUFFER_SIZE);
     char ambe_d[49] = { 0 };
-    mbe_processAmbe3600x2450Frame(audio_out_buf, &errs, &errs2, err_str, ambe_fr, ambe_d, &cur_mp, &prev_mp, &prev_mp_enhanced, 3);
+    mbe_processAmbe3600x2450Frame(audio_out_buf, &errs, &errs2, err_str, ambe_fr, ambe_d, &cur_mp, &prev_mp, &prev_mp_enhanced, uvquality);
     audio_queue->push(audio_out_buf, false);
 }
 
@@ -101,7 +102,7 @@ void softmbeSession::decode_ambe_3600x2400(char* input, size_t size)
 
     short* audio_out_buf = (short*)std::malloc(AUDIO_BUFFER_SIZE);
     char ambe_d[49] = { 0 };
-    mbe_processAmbe3600x2400Frame(audio_out_buf, &errs, &errs2, err_str, ambe_fr, ambe_d, &cur_mp, &prev_mp, &prev_mp_enhanced, 3);
+    mbe_processAmbe3600x2400Frame(audio_out_buf, &errs, &errs2, err_str, ambe_fr, ambe_d, &cur_mp, &prev_mp, &prev_mp_enhanced, uvquality);
     audio_queue->push(audio_out_buf, false);
 }
 
@@ -132,7 +133,7 @@ void softmbeSession::decode_ambe_2450(char* input, size_t size)
     char err_str[64];
 
     short* audio_out_buf = (short*)std::malloc(AUDIO_BUFFER_SIZE);
-    mbe_processAmbe2450Data(audio_out_buf, &errs, &errs2, err_str, mbe_packet_deinterleaved, &cur_mp, &prev_mp, &prev_mp_enhanced, 3);
+    mbe_processAmbe2450Data(audio_out_buf, &errs, &errs2, err_str, mbe_packet_deinterleaved, &cur_mp, &prev_mp, &prev_mp_enhanced, uvquality);
     audio_queue->push(audio_out_buf, false);
 }
 
@@ -173,7 +174,7 @@ void softmbeSession::decode_imbe_4400(char *input, size_t size)
 
     short* audio_out_buf = (short*)std::malloc(AUDIO_BUFFER_SIZE);
     char imbe_d[88]  = {0};
-    mbe_processImbe7200x4400Frame(audio_out_buf, &errs, &errs2, err_str, imbe_fr, imbe_d, &cur_mp, &prev_mp, &prev_mp_enhanced, 3);
+    mbe_processImbe7200x4400Frame(audio_out_buf, &errs, &errs2, err_str, imbe_fr, imbe_d, &cur_mp, &prev_mp, &prev_mp_enhanced, uvquality);
     audio_queue->push(audio_out_buf, false);
 }
 
