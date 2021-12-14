@@ -53,3 +53,8 @@ driver=softmbe
 ```
 
 Digital voice decode should now be available in openwebrx after restarting the `openwebrx` and `codecserver` services.
+
+Related Work
+============
+
+Another piece of software very similar to this one was developed by fventuri and is available [here](https://github.com/fventuri/codecserver-mbelib-module).
